@@ -34,6 +34,12 @@ public class User {
 
     }
 
+    public Message filtru(String text){
+        if(this.getMessage().from.toLowerCase().contains(text.toLowerCase())){
+            return this.getMessage().msg;
+        }
+    }
+
 
     public String getEmail() {
         return email;

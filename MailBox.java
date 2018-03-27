@@ -8,6 +8,7 @@ public class MailBox {
         listaMesaje.add(m);
     }
 
+
     @Override
     public String toString() {
         return "MailBox{" +
