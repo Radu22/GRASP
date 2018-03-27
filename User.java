@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class User {
     String email=new String();
     MailBox mailBox=new MailBox();
@@ -19,24 +21,54 @@ public class User {
 
     }
     //-------------------------------------------------
-    public void sendMessage(String destinatar)
+    public void sendMessage()
     {
+        String destinatar=this.getMessage().from;
         for(User i:DataBase.getUsers())
         {
             if(i.getEmail().equals(destinatar))
             {
-                Message msgSent=new Message(message.from,message.to,message.msg,message.attachement);
+                Message msgSent=new Message("Me",message.to,message.title,message.msg,message.attachement);
                 i.getMailBox().addMessage(msgSent);
             }
         }
 
 
 
-    }
 
+    }
+    public void deleteFromMailBox(String titlu)
+    {
+        for(Message i: this.getMailBox().listaMesaje)
+        {
+            this.getMailBox().listaMesaje.remove(i);
+        }
+    }
     public Message filtru(String text){
-        if(this.getMessage().from.toLowerCase().contains(text.toLowerCase())){
-            return this.getMessage().msg;
+        ArrayList<Message> listaMesaje=mailBox.getListaMesaje();
+        int i;
+        for(i=0;i<listaMesaje.size();i++) {
+            if (listaMesaje.get(i).from.compareTo(text)==0) {
+                System.out.println(listaMesaje.get(i).msg);
+            }
+        }
+        return null;
+    }
+    public void replyTo(User user){
+
+
+        ArrayList<Message> listaMesaje=mailBox.getListaMesaje();
+        int i;
+        for(i=0;i<listaMesaje.size();i++){
+            if(user.getEmail().compareTo(listaMesaje.get(i).from)==0){
+                Message message=new Message(this.getEmail(),listaMesaje.get(i).from,"titlu--","reply","");
+                this.composeMessage(message);
+                this.sendMessage();
+                System.out.println(listaMesaje.get(i).msg);
+                System.out.println("reply to");
+                System.out.println(message.msg);
+                break;
+            }
         }
     }
 
