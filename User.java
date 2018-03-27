@@ -1,16 +1,36 @@
 public class User {
-    String email;
-    MailBox mailBox;
-    Message message;
+    String email=new String();
+    MailBox mailBox=new MailBox();
+    Message message=new Message();
+
+
+
 
     public User(String email) {
         this.email=email;
         mailBox=new MailBox();
+
     }
+    //-------------------------------------
     public void composeMessage(Message m)
     {
         message=new Message();
         message.composeMesage(m);
+
+    }
+    //-------------------------------------------------
+    public void sendMessage(String destinatar)
+    {
+        for(User i:DataBase.getUsers())
+        {
+            if(i.getEmail().equals(destinatar))
+            {
+                Message msgSent=new Message(message.from,message.to,message.msg,message.attachement);
+                i.getMailBox().addMessage(msgSent);
+            }
+        }
+
+
 
     }
 

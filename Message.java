@@ -1,8 +1,19 @@
 public class Message {
-    String to;
-    String from;
-    String msg;
-    String attachement;
+    String to=new String();
+    String from=new String();
+    String msg=new String();
+    String attachement=new String();
+
+    public Message()
+    {
+
+    }
+    public Message(String to, String from, String msg, String attachement) {
+        this.to = to;
+        this.from = from;
+        this.msg = msg;
+        this.attachement = attachement;
+    }
 
     public void composeMesage(Message m)
     {

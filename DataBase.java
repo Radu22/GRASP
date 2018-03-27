@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class DataBase {
-    ArrayList<User> users;
+    private static ArrayList<User> users=new ArrayList<>();
 
     public void addUser(User u)
     {
@@ -12,4 +12,11 @@ public class DataBase {
         users.remove(u);
     }
 
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        DataBase.users = users;
+    }
 }
